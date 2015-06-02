@@ -38,7 +38,7 @@ public enum StatefulViewControllerState: String {
 ///
 public class StatefulViewController: UIViewController {
     lazy private var stateMachine: ViewStateMachine = ViewStateMachine(view: self.view)
-    
+    var viewIndex = 0
     /// The current state of the view controller.
     /// All states other than `Content` imply that there is a placeholder view shown.
     public var currentState: StatefulViewControllerState {

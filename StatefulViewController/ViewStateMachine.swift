@@ -34,7 +34,7 @@ public func == (lhs: ViewStateMachineState, rhs: ViewStateMachineState) -> Bool 
 public class ViewStateMachine {
     private var viewStore: [String: UIView]
     private let queue = dispatch_queue_create("com.aschuch.viewStateMachine.queue", DISPATCH_QUEUE_SERIAL)
-    
+    var viewIndex = 0
     /// The view that should act as the superview for any added views
     public let view: UIView
     
@@ -148,7 +148,7 @@ public class ViewStateMachine {
             // Add new view using AutoLayout
             newView.alpha = animated ? 0.0 : 1.0
             newView.setTranslatesAutoresizingMaskIntoConstraints(false)
-            self.view.addSubview(newView)
+            self.view.insertSubview(newView, atIndex: viewIndex)
             
             let views = ["view": newView]
             let hConstraints = NSLayoutConstraint.constraintsWithVisualFormat("|[view]|", options: nil, metrics: nil, views: views)
